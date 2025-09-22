@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- <link rel="icon" type="image/svg+xml" href="/vite.svg" /> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SurakshaLink</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              primary: { '50': '#eff6ff', '100': '#dbeafe', '200': '#bfdbfe', '300': '#93c5fd', '400': '#60a5fa', '500': '#3b82f6', '600': '#2563eb', '700': '#1d4ed8', '800': '#1e40af', '900': '#1e3a8a' },
+              danger: { '50': '#fff1f2', '100': '#ffe4e6', '200': '#fecdd3', '300': '#fda4af', '400': '#fb7185', '500': '#f43f5e', '600': '#e11d48', '700': '#be123c', '800': '#9f1239', '900': '#881337' },
+              warning: { '50': '#fffbeb', '100': '#fef3c7', '200': '#fde68a', '300': '#fcd34d', '400': '#fbbf24', '500': '#f59e0b', '600': '#d97706', '700': '#b45309', '800': '#92400e', '900': '#78350f' },
+              success: { '50': '#f0fdf4', '100': '#dcfce7', '200': '#bbf7d0', '300': '#86efac', '400': '#4ade80', '500': '#22c55e', '600': '#16a34a', '700': '#15803d', '800': '#166534', '900': '#14532d' }
+            },
+            keyframes: {
+              'modal-in': {
+                '0%': { opacity: '0', transform: 'scale(0.95)' },
+                '100%': { opacity: '1', transform: 'scale(1)' },
+              },
+              'modal-out': {
+                'from': { opacity: '1', transform: 'scale(1)' },
+                'to': { opacity: '0', transform: 'scale(0.95)' },
+              },
+              'fade-in': {
+                '0%': { opacity: '0' },
+                '100%': { opacity: '1' },
+              },
+              'fade-in-up': {
+                '0%': { opacity: '0', transform: 'translateY(10px)' },
+                '100%': { opacity: '1', transform: 'translateY(0)' },
+              },
+              'spin-y': {
+                'from': { transform: 'rotateY(0deg)' },
+                'to': { transform: 'rotateY(360deg)' },
+              },
+              'glow': {
+                '0%, 100%': { filter: 'drop-shadow(0 0 5px rgba(59, 130, 246, 0.4))' },
+                '50%': { filter: 'drop-shadow(0 0 20px rgba(59, 130, 246, 0.8))' },
+              },
+            },
+            animation: {
+              'modal-in': 'modal-in 0.3s ease-out forwards',
+              'modal-out': 'modal-out 0.3s ease-out forwards',
+              'fade-in': 'fade-in 0.5s ease-out forwards',
+              'fade-in-up': 'fade-in-up 0.5s ease-out forwards',
+              'spin-y': 'spin-y 8s linear infinite',
+              'glow': 'glow 3s ease-in-out infinite',
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      @media print {
+        .no-print {
+          display: none !important;
+        }
+
+        @page {
+            size: A4;
+            margin: 1.5cm;
+        }
+        
+        body {
+          background-color: white !important;
+          -webkit-print-color-adjust: exact;
+          print-color-adjust: exact;
+          font-size: 10pt;
+          color: black !important;
+        }
+        
+        main {
+          overflow: visible !important;
+          margin: 0 !important;
+          padding: 0 !important;
+        }
+        
+        .container {
+          max-width: 100% !important;
+          padding: 0 !important;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+          color: black !important;
+          break-after: avoid;
+        }
+        
+        /* Force light theme styles for printing */
+        .dark, .dark body { background-color: white !important; }
+        .dark .bg-gray-800, .dark .dark\:bg-gray-800,
+        .dark .bg-white,
+        .dark .bg-gray-900, .dark .dark\:bg-gray-900 {
+          background-color: white !important;
+        }
+        .dark .bg-gray-700, .dark .dark\:bg-gray-700 { background-color: #f9fafb !important; }
+        .dark .text-white, .dark .dark\:text-white, 
+        .dark .text-gray-100, .dark .dark\:text-gray-100, 
+        .dark .text-gray-200, .dark .dark\:text-gray-200, 
+        .dark .text-gray-300, .dark .dark\:text-gray-300,
+        .dark .text-gray-800, .dark .dark\:text-gray-800,
+        .dark .text-gray-900, .dark .dark\:text-gray-900 { 
+          color: black !important; 
+        }
+        .dark .text-gray-600, .dark .dark\:text-gray-400 { color: #4b5563 !important; }
+        .dark .text-gray-500, .dark .dark\:text-gray-300 { color: #6b7280 !important; }
+        .dark .border-gray-200, .dark .dark\:border-gray-700 { border-color: #e5e7eb !important; }
+
+        /* Report specific layout */
+        .shadow-lg, .shadow-md, .shadow-xl {
+            box-shadow: none !important;
+        }
+        .rounded-xl, .rounded-lg {
+            border: 1px solid #dee2e6 !important;
+            border-radius: 0 !important;
+        }
+
+        .grid {
+            grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
+        }
+
+        .grid > * {
+            break-inside: avoid;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Ensure progress bars and chart elements are visible */
+        .bg-primary-500 { background-color: #3b82f6 !important; }
+        .bg-primary-100 { background-color: #dbeafe !important; }
+        .bg-success-500 { background-color: #22c55e !important; }
+        .bg-warning-500 { background-color: #f59e0b !important; }
+        .bg-gray-400 { background-color: #9ca3af !important; }
+        .text-primary-500, .text-success-500, .text-warning-500 { color: black !important; }
+
+        /* Add a header and footer to the printed report */
+        body::before {
+          content: 'SurakshaLink - School Preparedness Report';
+          display: block;
+          text-align: center;
+          font-size: 1.2rem;
+          font-weight: bold;
+          margin-bottom: 1rem;
+          border-bottom: 2px solid #dee2e6;
+          padding-bottom: 0.5rem;
+        }
+
+        body::after {
+          content: 'Generated on: ' attr(data-datetime);
+          display: block;
+          text-align: center;
+          font-size: 0.8rem;
+          color: #6c757d;
+          margin-top: 2rem;
+          border-top: 1px solid #dee2e6;
+          padding-top: 0.5rem;
+        }
+      }
+      .animate-stagger-children > * {
+        opacity: 0;
+        animation: fade-in-up 0.5s ease-out forwards;
+      }
+      .animate-stagger-children > *:nth-child(1) { animation-delay: 0.05s; }
+      .animate-stagger-children > *:nth-child(2) { animation-delay: 0.10s; }
+      .animate-stagger-children > *:nth-child(3) { animation-delay: 0.15s; }
+      .animate-stagger-children > *:nth-child(4) { animation-delay: 0.20s; }
+      .animate-stagger-children > *:nth-child(5) { animation-delay: 0.25s; }
+      .animate-stagger-children > *:nth-child(6) { animation-delay: 0.30s; }
+      .animate-stagger-children > *:nth-child(7) { animation-delay: 0.35s; }
+      .animate-stagger-children > *:nth-child(8) { animation-delay: 0.40s; }
+      .animate-stagger-children > *:nth-child(9) { animation-delay: 0.45s; }
+      .animate-stagger-children > *:nth-child(10) { animation-delay: 0.50s; }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react/": "https://aistudiocdn.com/react@^19.1.1/",
+    "react": "https://aistudiocdn.com/react@^19.1.1",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.1.1/",
+    "react-router-dom": "https://aistudiocdn.com/react-router-dom@^7.9.1",
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.544.0",
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.20.0"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body class="bg-gray-50 dark:bg-gray-900">
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+  </body>
+</html>
