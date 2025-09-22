@@ -19,7 +19,3 @@ View your app in AI Studio: https://ai.studio/apps/drive/1HMoLewoAcFGvxC6kDjNnGV
 3. Run the app:
    `npm run dev`
 
-<<<<<<< HEAD
-install it
-=======
->>>>>>> a9889dc4638fa9e60460d3448b6e2216c44ce7cf
